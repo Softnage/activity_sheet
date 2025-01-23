@@ -24,7 +24,7 @@
                         <td class="border px-4 py-2">{{ $user->id }}</td>
                         <td class="border px-4 py-2">{{ $user->name }}</td>
                         <td class="border px-4 py-2">{{ $user->email }}</td>
-                        <td class="border px-4 py-2">{{ $user->is_admin ? 'Admin' : 'User' }}</td>
+                        <td class="border px-4 py-2">{{ $user->admin ? 'Admin' : 'User' }}</td>
                         <td class="border px-4 py-2 text-center">
                             <a href="{{ route('admin.editUser', $user->id) }}" 
                                class="text-blue-500 hover:underline">Edit</a>

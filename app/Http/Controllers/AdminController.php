@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User; // Import User model
 use App\Models\Activity; // Import Activity model
 use App\Models\Task; // Import Task model
+use App\Models\Meeting; // Import Meeting model
 
 class AdminController extends Controller
 {
