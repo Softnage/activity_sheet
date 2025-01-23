@@ -57,7 +57,7 @@ Thank you for considering contributing to the Laravel framework! The contributio
 git clone <a href="https://github.com/SylvesterAsare033/activity-sheet">https://github.com/SylvesterAsare033/activity-sheet</a><br>
 cd project-folder <br>
 <br>
-cp .env.example .env<br>
+copy .env.example .env<br>
 composer install<br>
 php artisan key:generate
 
