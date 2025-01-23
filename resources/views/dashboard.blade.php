@@ -100,11 +100,11 @@
 
                 <!-- Overdue Tasks Card -->
                 <div class="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
-                    <div class="text-red-500 mb-2">
+                    <div class="text-blue-500 mb-2">
                         <i class="fa-solid fa-exclamation-circle fa-2x"></i>
                     </div>
-                    <h4 class="text-lg font-bold text-gray-800">Overdue Tasks</h4>
-                    <p class="text-gray-600 text-sm">{{ $overdueTasksCount }}</p>
+                    <h4 class="text-lg font-bold text-gray-800">Finished Tasks</h4>
+                    <p class="text-gray-600 text-sm">{{ $completedActivities }}</p>
                 </div>
 
                 <!-- Upcoming Deadlines Card -->
@@ -162,6 +162,19 @@
                     @endforelse
                 </ul>
             </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Other Metric Cards -->
+
+    <!-- Total Hours Spent Card -->
+    <div class="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
+        <div class="text-purple-500 mb-2">
+            <i class="fa-solid fa-hourglass-half fa-2x"></i>
+        </div>
+        <h4 class="text-lg font-bold text-gray-800">Total Hours Spent</h4>
+        <p class="text-gray-600 text-sm">{{ $totalHoursSpent }} hours</p>
+    </div>
+</div>
+
         </div>
     </div>
 </div>

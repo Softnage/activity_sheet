@@ -56,6 +56,7 @@
                 <select id="status-filter" class="w-full p-3 border border-gray-300 rounded-lg">
                     <option value="all">All</option>
                     <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
             </div>

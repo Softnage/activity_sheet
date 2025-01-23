@@ -203,4 +203,38 @@ public function updateActivity(Request $request, $id)
 
     return redirect()->route('admin.viewAllActivities')->with('success', 'Activity updated successfully.');
 }
+public function showCreateMeetingForm()
+{
+    $users = User::all();
+    return view('admin.create-meeting', compact('users'));
+}
+public function storeMeeting(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'start_time' => 'required|date',
+        'end_time' => 'required|date|after:start_time',
+        'users' => 'required|array',
+        'users.*' => 'exists:users,id',
+    ]);
+
+    $meeting = Meeting::create([
+        'title' => $validated['title'],
+        'description' => $validated['description'],
+        'start_time' => $validated['start_time'],
+        'end_time' => $validated['end_time'],
+    ]);
+
+    $meeting->users()->attach($validated['users']);
+
+    // Send notifications to invited users
+    foreach ($validated['users'] as $userId) {
+        $user = User::find($userId);
+        $user->notify(new \App\Notifications\MeetingNotification($meeting));
+    }
+
+    return redirect()->route('admin.dashboard')->with('success', 'Meeting created successfully, and invitations have been sent.');
+}
+
 }

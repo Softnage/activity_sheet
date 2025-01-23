@@ -56,5 +56,10 @@ public function tasks()
     return $this->hasMany(Task::class);
 }
 
+public function meetings()
+{
+    return $this->belongsToMany(Meeting::class, 'meeting_user');
+}
+
 
 }

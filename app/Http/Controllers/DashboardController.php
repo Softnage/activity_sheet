@@ -21,9 +21,9 @@ class DashboardController extends Controller
             ->where('status', 'received')
             ->count();
 
-        $overdueTasksCount = Task::where('user_id', $userId)
-            ->where('status', '!=', 'received')
-            ->where('due_date', '<', now())
+        $completedActivities = Activity::where('user_id', $userId)
+            ->where('status', 'Completed')
+            // ->where('due_date', '<', now())
             ->count();
 
         $upcomingDeadlinesCount = Task::where('user_id', $userId)
@@ -43,13 +43,23 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
+                // Calculate total hours spent
+    $totalHoursSpent = Activity::whereNotNull('start_time')
+    ->whereNotNull('end_time')
+    ->get()
+    ->sum(function ($activity) {
+        return $activity->end_time->diffInHours($activity->start_time);
+    });
+
+
         return view('dashboard', compact(
             'pendingTasksCount',
             'receivedTasksCount',
-            'overdueTasksCount',
+            'completedActivities',
             'upcomingDeadlinesCount',
             'tasksWithDeadlines',
-            'recentActivities'
+            'recentActivities',
+            'totalHoursSpent'
         ));
     }
 }

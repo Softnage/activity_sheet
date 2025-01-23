@@ -45,6 +45,11 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/assign-task', [AdminController::class, 'showAssignTaskForm'])->name('admin.assign-task'); // Show form to assign task
     Route::post('/admin/assign-task', [AdminController::class, 'storeTask'])->name('admin.tasks.store'); // Store assigned task
 });
+Route::middleware('admin')->group(function (){
+    Route::get('/meetings/create', [AdminController::class, 'showCreateMeetingForm'])->name('admin.showCreateMeetingForm');
+    Route::post('/meetings/store', [AdminController::class, 'storeMeeting'])->name('admin.storeMeeting');
+});
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/activities/export/csv', [ActivityExportController::class, 'exportCsv'])->name('activities.export.csv');
