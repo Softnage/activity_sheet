@@ -35,7 +35,7 @@
                 </li>
 
                 <!-- User Links -->
-                @cannot('isAdmin')
+                @cannot('Admin')
                     <!-- User Activities -->
                     <li>
                         <a href="{{ route('activities.index') }}" 
@@ -59,7 +59,7 @@
 
                 <!-- Admin Links -->
 <!-- Admin Links -->
-@can('admin')
+@if (auth()->user() && auth()->user()->role === 'admin')
     <!-- Admin Dashboard -->
     <li>
         <a href="{{ route('admin.dashboard') }}" 
@@ -69,7 +69,7 @@
             <span x-show="isOpen" class="transition-all duration-300">Admin Dashboard</span>
         </a>
     </li>
-@endcan
+@endif
 
             </ul>
         </div>

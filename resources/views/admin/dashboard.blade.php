@@ -18,7 +18,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <!-- Total Tasks -->
         <div class="p-4 bg-blue-100 rounded-lg shadow">
-            <h2 class="text-xl font-semibold">Total Tasks</h2>
+            <h2 class="text-xl font-semibold">Total Tasks Assigned</h2>
             <p class="text-3xl font-bold">{{ $totalTasks }}</p>
         </div>
 
