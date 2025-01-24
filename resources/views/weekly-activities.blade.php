@@ -1,38 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen flex flex-col bg-gray-100">
-    <!-- Header Section -->
-    <!-- <header class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-8 px-4">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl font-bold">Weekly Activities</h1>
-            <p class="mt-2 text-lg">
-                Stay organized and track your progress throughout the week.
-            </p>
-        </div>
-    </header> -->
+<div class="min-h-screen flex flex-col bg-white">
 
     <!-- Content Section -->
     <div class="flex-1 container mx-auto mt-6 px-4 lg:px-8">
-        <!-- Navigation Bar -->
-        <!-- <nav class="flex justify-between items-center bg-white shadow-lg rounded-lg py-4 px-6 mb-8">
-            <div class="flex items-center space-x-4">
-                <a href="{{ route('dashboard') }}" class="text-gray-700 font-semibold hover:text-blue-500">
-                    Dashboard
-                </a>
-                <a href="{{ route('weekly.activities') }}" class="text-gray-700 font-semibold hover:text-blue-500">
-                    Weekly Activities
-                </a>
-                @can('isAdmin')
-                <a href="{{ route('tasks.assign') }}" class="text-gray-700 font-semibold hover:text-blue-500">
-                    Assign Tasks
-                </a>
-                @endcan
-            </div>
-            <a href="{{ route('activities.create') }}" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
-                Add Activity
-            </a>
-        </nav> -->
 
         <!-- Week Selector -->
         <div class="flex justify-between items-center bg-blue-50 p-4 rounded-lg shadow-md">
@@ -100,11 +72,5 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4 mt-12">
-        <div class="container mx-auto text-center">
-            <p>&copy; {{ date('Y') }} Weekly Activities. All rights reserved.</p>
-        </div>
-    </footer>
 </div>
 @endsection
