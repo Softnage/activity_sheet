@@ -2,19 +2,6 @@
 
 @section('content')
 <div class="min-h-screen bg-gray-100 flex flex-col">
-    <!-- Header -->
-    <!-- <header class="bg-white shadow-md py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-gray-800">Activity Management</h1>
-            <nav class="flex space-x-4">
-                <a href="{{ route('dashboard') }}" class="text-blue-600 hover:text-blue-800">Dashboard</a>
-                @can('isAdmin')
-                    <a href="{{ route('admin.dashboard') }}" class="text-blue-600 hover:text-blue-800">Admin Dashboard</a>
-                @endcan
-            </nav>
-        </div>
-    </header> -->
-
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-8 flex-1">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -32,20 +19,18 @@
                             <i class="fa-solid fa-calendar-week mr-2"></i> Weekly Activities
                         </a>
                     </li>
-                    @cannot('isAdmin')
                         <li>
                             <a href="{{ route('activities.index') }}" class="block p-3 rounded-lg transition-all {{ Route::is('activities.index') ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100' }}">
                                 <i class="fa-solid fa-list-check mr-2"></i> My Activities
                             </a>
                         </li>
-                    @endcannot
-                    @can('isAdmin')
+                    @if (auth()->user() && auth()->user()->role === 'admin')
                         <li>
                             <a href="{{ route('admin.manageUsers') }}" class="block p-3 rounded-lg transition-all {{ Route::is('admin.manageUsers') ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100' }}">
                                 <i class="fa-solid fa-users-cog mr-2"></i> Manage Users
                             </a>
                         </li>
-                    @endcan
+                    @endif
                 </ul>
             </aside>
 
@@ -61,7 +46,7 @@
                     </form>
                     <form method="GET" action="{{ route('activities.index') }}" class="mt-4 md:mt-0 md:ml-4">
                         <select name="status" class="w-full py-2 px-4 border rounded-lg shadow-sm focus:ring-blue-500 focus:outline-none" onchange="this.form.submit()">
-                            <option value="">Filter by status</option>
+                            <option value="">All Activities</option>
                             <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
                             <option value="In Progress" {{ request('status') == 'In Progress' ? 'selected' : '' }}>In Progress</option>
                             <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
