@@ -54,7 +54,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
 ## Application config
-git clone <a href="https://github.com/SylvesterAsare033/activity-sheet">https://github.com/SylvesterAsare033/activity-sheet</a><br>
+git clone https://github.com/Softnage/activity_sheet.git<br>
 cd project-folder <br>
 <br>
 copy .env.example .env<br>
