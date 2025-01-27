@@ -1,89 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activity Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- robot font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity Sheet - Welcome</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- nunito fomt -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        *{
             font-family: 'Nunito', sans-serif;
         }
     </style>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
-<body class="bg-gray-50">
+<body class="bg-white">
+      <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-transparent z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="#" class="text-xl font-bold text-gray-800">SoftNage Activity Sheet</a>
+      <!-- Buttons -->
+      <div class="flex gap-4">
+        <button class="text-black px-4 py-2 rounded-full hover:bg-white hover:text-black"><a href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i></a></button>
+        <button class="text-white px-4 py-2 rounded-full bg-blue-600 "><a href="/register"><i class="fa-solid fa-user-plus"></i></a></button>
+      </div>
+    </div>
+  </nav>
+  <section class="flex flex-col-reverse lg:flex-row items-center justify-between max-w-7xl mx-auto px-6 lg:px-12 py-16">
+    <!-- Text Section -->
+    <div class="lg:w-1/2 text-center lg:text-left">
+    <h1 class="text-4xl font-bold text-gray-800 mb-4">Efficient and Organized Activity Tracker</h1>
+<p class="text-lg text-gray-600 mb-6">Track your progress with ease using our activity sheets. Stay organized and motivated with every task.</p>
+ <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+        <button class="bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-800 focus:ring focus:ring-green-300"><a href="/register">Get Started <i class="fa-solid fa-rocket"></i></a></button>
+        <button class="flex items-center gap-2 text-gray-700 border border-gray-300 px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 focus:ring focus:ring-gray-200">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-4.586-2.577A1 1 0 009 9.394v5.182a1 1 0 001.166.993l4.586-1.664a1 1 0 00.752-.994v-1.758a1 1 0 00-.752-.993z" />
+          </svg>
+          Watch Video
+        </button>
+      </div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="h-screen bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center relative">
-        <div class="absolute inset-0">
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-        </div>
-
-        <div class="relative z-10 text-center px-6 max-w-3xl">
-            <h1 class="text-6xl font-bold text-white mb-6">Welcome to Your Activity Dashboard</h1>
-            <p class="text-xl text-gray-100 mb-8">
-                Track, manage, and organize your activities effortlessly with a beautiful and intuitive interface.
-            </p>
-            <a href="#features" class="px-8 py-4 bg-white text-blue-600 font-medium rounded-lg shadow-lg hover:bg-gray-200 transition">
-                Explore Features
-            </a>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-16">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Key Features</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
-                    <div class="text-6xl text-green-500 mb-4">
-                        &#128197;
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Schedule Management</h3>
-                    <p class="text-gray-600">Easily manage your schedules and stay ahead of deadlines.</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
-                    <div class="text-6xl text-blue-500 mb-4">
-                        &#128640;
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Goal Tracking</h3>
-                    <p class="text-gray-600">Set your goals and visualize your progress with our intuitive tools.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
-                    <div class="text-6xl text-yellow-500 mb-4">
-                        &#128187;
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Data Insights</h3>
-                    <p class="text-gray-600">Gain valuable insights into your activities with detailed analytics.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section class="bg-gradient-to-r from-purple-500 to-pink-500 py-20 text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6">Get Started Today</h2>
-            <p class="text-lg mb-8">Take control of your activities and boost your productivity. Sign up now to begin your journey.</p>
-            <a href="/register" class="px-8 py-4 bg-white text-purple-600 font-medium rounded-lg shadow-lg hover:bg-gray-200 transition">
-                Sign Up Now
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 text-gray-400 py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-sm">&copy; 2025 Activity Dashboard. All rights reserved.</p>
-        </div>
-    </footer>
-
+    <!-- Image Section -->
+    <div class="lg:w-1/2 flex justify-center">
+      <img src="https://themewagon.github.io/eNno/assets/img/hero-img.png" alt="Illustration" class="w-full max-w-md lg:max-w-lg">
+    </div>
+  </section>
 </body>
 </html>
