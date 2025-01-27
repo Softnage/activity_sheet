@@ -8,17 +8,18 @@
 
         <!-- Week Selector -->
         <div class="flex justify-between items-center bg-teal-100 p-4 rounded-lg shadow-md">
-            <a href="{{ route('weekly.activities', ['week' => $currentWeekStart->subWeek()->format('Y-m-d')]) }}" 
-               class="text-teal-600 hover:underline flex items-center">
-                <i class="fa-solid fa-chevron-left mr-2"></i>Previous Week
-            </a>
-            <span class="text-xl font-semibold text-gray-800">
-                {{ $currentWeekStart->format('d M, Y') }} - {{ $currentWeekEnd->format('d M, Y') }}
-            </span>
-            <a href="{{ route('weekly.activities', ['week' => $currentWeekStart->addWeek()->format('Y-m-d')]) }}" 
-               class="text-teal-600 hover:underline flex items-center">
-                Next Week<i class="fa-solid fa-chevron-right ml-2"></i>
-            </a>
+        <a href="{{ route('weekly.activities', ['week' => $weekStart->copy()->subWeek()->format('Y-m-d')]) }}" 
+   class="text-teal-600 hover:underline flex items-center">
+    <i class="fa-solid fa-chevron-left mr-2"></i>Previous Week
+</a>
+<span class="text-xl font-semibold text-gray-800">
+    {{ $weekStart->format('d M, Y') }} - {{ $weekEnd->format('d M, Y') }}
+</span>
+<a href="{{ route('weekly.activities', ['week' => $weekStart->copy()->addWeek()->format('Y-m-d')]) }}" 
+   class="text-teal-600 hover:underline flex items-center">
+    Next Week<i class="fa-solid fa-chevron-right ml-2"></i>
+</a>
+
         </div>
 
         <!-- Filters -->

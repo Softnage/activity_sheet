@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\Auth;
 
 class WeeklyActivityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $activities = Auth::user()->activities; // Get activities for the logged-in user
-
-        // Get current week range (start and end)
-        $currentWeekStart = Carbon::now()->startOfWeek();
-        $currentWeekEnd = Carbon::now()->endOfWeek();
-        
-        // Filter activities by the current week's range
-        $weeklyActivities = $activities->filter(function ($activity) use ($currentWeekStart, $currentWeekEnd) {
+    
+        // Check if a specific week is requested, otherwise default to the current week
+        $weekStart = $request->input('week') 
+            ? Carbon::parse($request->input('week'))->startOfWeek() 
+            : Carbon::now()->startOfWeek();
+        $weekEnd = $weekStart->copy()->endOfWeek();
+    
+        // Filter activities by the selected week's range
+        $weeklyActivities = $activities->filter(function ($activity) use ($weekStart, $weekEnd) {
             $activityDate = Carbon::parse($activity->created_at);
-            return $activityDate->between($currentWeekStart, $currentWeekEnd);
+            return $activityDate->between($weekStart, $weekEnd);
         });
-
+    
         // Define time slots
         $timeSlots = [
             '8:00 AM - 9:00 AM' => ['start' => '08:00', 'end' => '09:00'],
@@ -35,20 +37,20 @@ class WeeklyActivityController extends Controller
             '3:00 PM - 4:00 PM' => ['start' => '15:00', 'end' => '16:00'],
             '4:00 PM - 5:00 PM' => ['start' => '16:00', 'end' => '17:00'],
         ];
-
+    
         $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
+    
         // Initialize an empty structure for the table
         $structuredActivities = [];
         foreach ($daysOfWeek as $day) {
             $structuredActivities[$day] = array_fill_keys(array_keys($timeSlots), 'No Activity');
         }
-
-        // Populate the structure with activities for the current week
+    
+        // Populate the structure with activities for the selected week
         foreach ($weeklyActivities as $activity) {
             $day = Carbon::parse($activity->created_at)->format('l'); // Get day of the week
             $time = Carbon::parse($activity->created_at)->format('H:i'); // Get time in 24-hour format
-
+    
             foreach ($timeSlots as $slot => $range) {
                 if ($time >= $range['start'] && $time < $range['end']) {
                     $structuredActivities[$day][$slot] = $activity->title;
@@ -56,8 +58,9 @@ class WeeklyActivityController extends Controller
                 }
             }
         }
-
+    
         // Pass the data to the view
-        return view('weekly-activities', compact('structuredActivities', 'timeSlots', 'daysOfWeek', 'currentWeekStart', 'currentWeekEnd'));
+        return view('weekly-activities', compact('structuredActivities', 'timeSlots', 'daysOfWeek', 'weekStart', 'weekEnd'));
     }
+    
 }
