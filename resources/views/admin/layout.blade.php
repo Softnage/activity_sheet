@@ -20,7 +20,7 @@
 
         /* Sidebar styles */
         #sidebar {
-            background: linear-gradient(180deg, #4f46e5, #818cf8);
+            /* background-color: #fff; */
             color: #fff;
         }
 
@@ -48,7 +48,7 @@
 <body class="bg-white">
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-        <div id="sidebar" class="w-64 h-screen fixed md:relative z-20 hidden md:flex flex-col">
+        <div id="sidebar" class="w-64 h-screen fixed md:relative z-20 hidden md:flex flex-col bg-blue-700">
             <div class="p-6 text-center text-2xl font-bold border-b border-white/20">
                 <i class="fas fa-user-shield"></i> Admin Panel
             </div>
