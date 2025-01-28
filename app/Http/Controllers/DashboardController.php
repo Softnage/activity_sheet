@@ -10,6 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        
         $userId = Auth::id();
 
         // Calculate statistics
@@ -26,14 +27,17 @@ class DashboardController extends Controller
             // ->where('due_date', '<', now())
             ->count();
 
-        $upcomingDeadlinesCount = Task::where('user_id', $userId)
-            ->where('status', '!=', 'received')
-            ->where('due_date', '>=', now())
-            ->count();
+// Count overdue tasks with incomplete activities
+$overdueTaskWithIncompleteActivitiesCount = Task::where('status', 'received')
+    ->where('due_date', '<', now()) // Tasks with past due dates
+    ->whereHas('activity', function ($query) {
+        $query->where('status', '!=', 'Completed'); // Incomplete activities
+    })
+    ->count();
 
         $tasksWithDeadlines = Task::where('user_id', $userId)
             ->where('status', '!=', 'received')
-            ->where('due_date', '>=', now())
+            // ->where('due_date', '>==', now())
             ->orderBy('due_date', 'asc')
             ->take(5)
             ->get();
@@ -56,10 +60,11 @@ class DashboardController extends Controller
             'pendingTasksCount',
             'receivedTasksCount',
             'completedActivities',
-            'upcomingDeadlinesCount',
+            'overdueTaskWithIncompleteActivitiesCount',
             'tasksWithDeadlines',
             'recentActivities',
             'totalHoursSpent'
         ));
     }
+    
 }

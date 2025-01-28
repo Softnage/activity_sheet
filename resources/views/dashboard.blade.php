@@ -115,7 +115,7 @@
                         <i class="fa-solid fa-calendar-day fa-2x"></i>
                     </div>
                     <h4 class="text-lg font-bold text-gray-800">Upcoming Deadlines</h4>
-                    <p class="text-gray-600 text-sm">{{ $upcomingDeadlinesCount }}</p>
+                    <p class="text-gray-600 text-sm">{{ $overdueTaskWithIncompleteActivitiesCount }}</p>
                 </div>
             </div>
 
@@ -134,7 +134,7 @@
                                     Due: <span class="font-semibold">{{ $task->due_date->format('d M, Y - h:i A') }}</span>
                                 </p>
                             </div>
-                            <span class="px-3 py-1 text-sm font-medium text-white bg-blue-500 rounded-full">
+                            <span class="px-3 py-1 text-sm font-medium text-white bg-yellow-500 rounded-full">
                                 {{ $task->status }}
                             </span>
                         </li>

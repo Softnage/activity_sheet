@@ -67,6 +67,10 @@ class TaskController extends Controller
         // Redirect back with success message
         return redirect()->route('activities.tasks')->with('success', 'Task deleted successfully.');
     }
-
+    public function activity()
+    {
+        return $this->hasOne(Activity::class, 'task_id', 'id'); // Matches task_id in activities
+    }
+    
 }
 
