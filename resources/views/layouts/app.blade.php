@@ -94,19 +94,19 @@
         </header>
 
         <main class="main-content">
-            @isset($header)
+            <!-- @isset($header)
                 <header>
                     <h2>{{ $header }}</h2>
                 </header>
-            @endisset
+            @endisset -->
 
             <section>
                 @yield('content')
             </section>
         </main>
 
-        <footer class="footer">
+        <!-- <footer class="footer">
             <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</p>
-        </footer>
+        </footer> -->
     </body>
 </html>

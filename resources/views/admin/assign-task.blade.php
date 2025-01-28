@@ -39,7 +39,7 @@
             <!-- Task Description -->
             <div class="mb-6">
                 <label for="description" class="block text-lg font-medium text-gray-700 mb-2">Task Description</label>
-                <textarea name="task_description" id="task_description" rows="5" 
+                <textarea name="description" id="description" rows="5" 
                           class="block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                           placeholder="Enter task description"></textarea>
                 @error('description')
