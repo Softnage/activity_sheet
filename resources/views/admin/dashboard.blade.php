@@ -61,8 +61,8 @@
             <!-- Priority Levels -->
             <div class="mb-2">
                 <label class="text-sm font-medium">High Priority</label>
-                <div class="w-full bg-yellow-300 rounded">
-                    <div class="bg-yellow-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
+                <div class="w-full bg-red-300 rounded">
+                    <div class="bg-red-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
                          style="width: {{ ($tasksByPriority['High'] ?? 0) * 10 }}%">
                         {{ $tasksByPriority['High'] ?? 0 }}
                     </div>
@@ -79,8 +79,8 @@
             </div>
             <div>
                 <label class="text-sm font-medium">Low Priority</label>
-                <div class="w-full bg-yellow-300 rounded">
-                    <div class="bg-yellow-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
+                <div class="w-full bg-blue-300 rounded">
+                    <div class="bg-blue-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
                          style="width: {{ ($tasksByPriority['Low'] ?? 0) * 10 }}%">
                         {{ $tasksByPriority['Low'] ?? 0 }}
                     </div>
@@ -92,23 +92,28 @@
 
 
     <!-- Charts Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Task Priority Chart -->
-        <div class="p-4 bg-white shadow rounded-lg">
-            <h2 class="text-lg font-semibold mb-4">Tasks by Priority</h2>
-            <canvas id="tasksPriorityChart"></canvas>
-        </div>
-
-        <!-- Activity Completion Chart -->
-        <div class="p-4 bg-white shadow rounded-lg">
-            <h2 class="text-lg font-semibold mb-4">Activity Completion</h2>
-            <canvas id="activityCompletionChart"></canvas>
-        </div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Task Priority Chart -->
+    <div class="p-6 bg-white shadow rounded-lg">
+        <h2 class="text-lg font-bold text-gray-700 mb-2">Tasks by Priority</h2>
+        <p class="text-sm text-gray-500 mb-4">Shows the distribution of tasks based on priority levels (High, Medium, Low).</p>
+        <canvas id="tasksPriorityChart"></canvas>
     </div>
+
+    <!-- Activity Completion Chart -->
+    <div class="p-6 bg-white shadow rounded-lg">
+        <h2 class="text-lg font-bold text-gray-700 mb-2">Activity Completion</h2>
+        <p class="text-sm text-gray-500 mb-4">Displays the percentage of completed versus remaining activities.</p>
+        <canvas id="activityCompletionChart"></canvas>
+    </div>
+</div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+// Tasks by Priority Line Chart
 // Tasks by Priority Line Chart
 const tasksPriorityCtx = document.getElementById('tasksPriorityChart').getContext('2d');
 new Chart(tasksPriorityCtx, {
@@ -118,28 +123,32 @@ new Chart(tasksPriorityCtx, {
         datasets: [{
             label: 'Tasks by Priority',
             data: [{{ $tasksByPriority['High'] ?? 0 }}, {{ $tasksByPriority['Medium'] ?? 0 }}, {{ $tasksByPriority['Low'] ?? 0 }}],
-            backgroundColor: 'rgba(59, 130, 246, 0.2)', // Fill color (light blue)
-            borderColor: 'rgba(59, 130, 246, 1)',       // Line color (blue)
+            backgroundColor: 'rgba(59, 130, 246, 0.2)', // Fill color
+            borderColor: 'rgba(59, 130, 246, 1)',       // Line color
             borderWidth: 2,
-            tension: 0.4,  
-            font: {family:'Poppins'},                       // Curve tension for smoother lines
-            fill: true,                                 // Enable area fill under the line
+            tension: 0.4,                               // Smoother curve
+            fill: true,                                 // Enable fill under the curve
             pointBackgroundColor: 'rgba(59, 130, 246, 1)', // Point color
-            pointRadius: 5                              // Size of points
+            pointRadius: 5                              // Point size
         }]
     },
     options: {
         responsive: true,
         plugins: {
-            legend: { display: true, position: 'top' }, // Display the legend at the top
+            legend: { 
+                display: true, 
+                position: 'top',
+                labels: { font: { family: 'Poppins' } } 
+            }
         },
         scales: {
             x: {
                 title: {
                     display: true,
                     text: 'Priority Levels',
-                    font: { weight: 'bold', family: 'Poppins'}
-                }
+                    font: { weight: 'bold', family: 'Poppins' }
+                },
+                grid: { display: false } // Hide X-axis gridlines
             },
             y: {
                 title: {
@@ -147,30 +156,47 @@ new Chart(tasksPriorityCtx, {
                     text: 'Number of Tasks',
                     font: { weight: 'bold', family: 'Poppins' }
                 },
-                beginAtZero: true                        // Ensure the Y-axis starts at 0
+                beginAtZero: true,
+                ticks: { stepSize: 1 } // Ensure ticks are integers
             }
         }
     }
 });
 
-
-    // Activity Completion Chart
-    const activityCompletionCtx = document.getElementById('activityCompletionChart').getContext('2d');
-    new Chart(activityCompletionCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Completed', 'Remaining'],
-            datasets: [{
-                data: [{{ $completedActivities }}, {{ $totalActivities - $completedActivities }}],
-                backgroundColor: ['#34d399', '#f87171'],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            plugins: {
-                legend: { position: 'bottom' },
+// Activity Completion Chart
+const activityCompletionCtx = document.getElementById('activityCompletionChart').getContext('2d');
+new Chart(activityCompletionCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Completed', 'Remaining'],
+        datasets: [{
+            data: [{{ $completedActivities }}, {{ $totalActivities - $completedActivities }}],
+            backgroundColor: ['#34d399', '#f87171'], // Green for completed, red for remaining
+            hoverOffset: 8
+        }]
+    },
+    options: {
+        plugins: {
+            legend: { 
+                position: 'bottom',
+                labels: { font: { family: 'Poppins', size: 12 } }
             },
+            tooltip: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        const label = tooltipItem.label || '';
+                        const value = tooltipItem.raw || 0;
+                        const total = {{ $totalActivities }};
+                        const percentage = ((value / total) * 100).toFixed(1);
+                        return `${label}: ${value} (${percentage}%)`;
+                    }
+                }
+            }
         },
-    });
+        responsive: true,
+        cutout: '70%' // Create a donut-like appearance
+    }
+});
+
 </script>
 @endsection
