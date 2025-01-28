@@ -19,6 +19,7 @@
                     <th class="border border-gray-200 p-2 text-left">Description</th>
                     <th class="border border-gray-200 p-2 text-left">Priority</th>
                     <th class="border border-gray-200 p-2 text-left">Created At</th>
+                    <th class="border border-gray-200 p-2 text-left">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,9 +28,18 @@
                         <td class="border border-gray-200 p-2">{{ $task->id }}</td>
                         <td class="border border-gray-200 p-2">{{ $task->title }}</td>
                         <td class="border border-gray-200 p-2">{{ $task->user->name }}</td>
-                        <td class="border border-gray-200 p-2">{{$task->description}}</td>
+                        <td class="border border-gray-200 p-2">{{ $task->description }}</td>
                         <td class="border border-gray-200 p-2">{{ $task->priority }}</td>
                         <td class="border border-gray-200 p-2">{{ $task->created_at->format('Y-m-d') }}</td>
+                        <td class="border border-gray-200 p-2">
+                            <form action="{{ route('admin.deleteTask', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-800">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

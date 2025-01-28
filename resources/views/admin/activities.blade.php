@@ -1,12 +1,23 @@
 @extends('admin.layout')
 
 @section('content')
-@include('components.export-activities')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <div class="container mx-auto my-8">
     <h2 class="text-3xl font-bold text-center mb-6">Activities Submitted by Users</h2>
 
+    <!-- User Filter Dropdown -->
+    <form method="GET" action="{{ route('admin.viewAllActivities') }}" class="mb-6">
+        <label for="user_id" class="block mb-2 text-sm font-medium text-gray-700">Select User:</label>
+        <select name="user_id" id="user_id" class="w-full border border-gray-300 rounded px-3 py-2" onchange="this.form.submit()">
+            <option value="">-- All Users --</option>
+            @foreach($users as $user)
+                <option value="{{ $user->id }}" {{ $selectedUser == $user->id ? 'selected' : '' }}>
+                    {{ $user->name }}
+                </option>
+            @endforeach
+        </select>
+    </form>
+
+    <!-- Activities Table -->
     <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
         <table class="min-w-full table-auto border-collapse border border-gray-300">
             <thead>
@@ -19,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($activities as $activity)
+                @forelse($activities as $activity)
                     <tr class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }}">
                         <td class="border border-gray-300 px-4 py-2">{{ $activity->title }}</td>
                         <td class="border border-gray-300 px-4 py-2">{{ $activity->user->name }}</td>
@@ -34,18 +45,20 @@
                         <td class="border border-gray-300 px-4 py-2">{{ $activity->created_at->format('M d, Y') }}</td>
                         <td class="border border-gray-300 px-4 py-2">
                             <a href="{{ route('admin.editActivity', $activity->id) }}" class="text-blue-600 hover:text-blue-800">Edit</a>
-                            <!-- Optional: Add a delete link if needed -->
                             <form action="{{ route('admin.deleteActivity', $activity->id) }}" method="POST" class="inline">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="text-red-600 hover:text-red-800 ml-4" onclick="return confirm('Are you sure you want to delete this activity?');">Delete</button>
-</form>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-800 ml-4" onclick="return confirm('Are you sure you want to delete this activity?');">Delete</button>
+                            </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="5" class="border border-gray-300 px-4 py-2 text-center">No activities found.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 </div>
-
 @endsection

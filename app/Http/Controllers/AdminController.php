@@ -96,14 +96,22 @@ public function viewAllTasks()
     return view('admin.tasks', compact('tasks'));
 }
 
-// View all activities added by users
-public function viewAllActivities()
+// View all activities added by users with optional user filtering
+public function viewAllActivities(Request $request)
 {
-    // Fetch all activities with user details
-    $activities = Activity::with('user')->get(); // Get all activities along with user data
-    
-    return view('admin.activities', compact('activities'));
+    $users = User::all(); // Fetch all users for the dropdown
+    $selectedUser = $request->input('user_id'); // Get the selected user ID from the request
+
+    // Fetch activities, optionally filtering by the selected user
+    $activities = Activity::with('user')
+        ->when($selectedUser, function ($query, $selectedUser) {
+            return $query->where('user_id', $selectedUser);
+        })
+        ->get();
+
+    return view('admin.activities', compact('activities', 'users', 'selectedUser'));
 }
+
 
 // Show the task assignment form
 public function showAssignTaskForm()
@@ -133,6 +141,14 @@ public function storeTask(Request $request)
 
     return redirect()->route('admin.viewAllTasks')->with('success', 'Task assigned successfully.');
 }
+public function deleteTask($id)
+{
+    $task = Task::findOrFail($id);
+    $task->delete();
+
+    return redirect()->route('admin.viewAllTasks')->with('success', 'Task deleted successfully.');
+}
+
 public function manageUsers()
 {
     // Fetch all users with pagination for better performance in case of a large number of users

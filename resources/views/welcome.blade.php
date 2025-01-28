@@ -7,6 +7,10 @@
   <link rel="icon" href="{{ asset('images/favicon.webp') }}" type="image/x-icon">
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- core js -->
+   <!-- Core JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.32.0/minified.js" integrity="sha512-k6r/cECg5yHEVZht/7YoCEppbAH8W5I4uLwrV90L+H5OPvgW/uwnYrp4LsESVWnTWrNIFGa3kOAl2yZdAghUVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- nunito fomt -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>

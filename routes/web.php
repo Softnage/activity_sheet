@@ -44,6 +44,8 @@ Route::middleware('admin')->group(function () {
     // Assign Tasks
     Route::get('/admin/assign-task', [AdminController::class, 'showAssignTaskForm'])->name('admin.assign-task'); // Show form to assign task
     Route::post('/admin/assign-task', [AdminController::class, 'storeTask'])->name('admin.tasks.store'); // Store assigned task
+    Route::delete('/admin/tasks/{id}', [AdminController::class, 'deleteTask'])->name('admin.deleteTask');
+
 });
 Route::middleware('admin')->group(function (){
     Route::get('/meetings/create', [AdminController::class, 'showCreateMeetingForm'])->name('admin.showCreateMeetingForm');
