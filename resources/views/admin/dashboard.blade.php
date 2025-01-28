@@ -27,25 +27,31 @@
         </div>
     </div>
 
-    <!-- Completion Rate -->
-    <div class="p-4 bg-green-100 rounded-lg shadow">
-        <div class="flex items-center">
-            <div class="flex-shrink-0 p-2 bg-green-200 rounded-full">
-                <i class="fas fa-check-circle text-green-600 text-2xl"></i>
-            </div>
-            <div class="ml-4">
-                <h2 class="text-xl font-semibold">Completion Rate</h2>
-                <p class="text-3xl font-bold text-green-800">{{ $completionRate }}%</p>
-            </div>
+<!-- Completion Rate -->
+<div class="p-4 rounded-lg shadow" style="background-color: {{ $completionRate >= 50 ? '#d1fae5' : '#fee2e2' }};">
+    <div class="flex items-center">
+        <div class="flex-shrink-0 p-2 rounded-full" 
+             style="background-color: {{ $completionRate >= 50 ? '#a7f3d0' : '#fecaca' }};">
+            <i class="fas fa-check-circle text-2xl" 
+               style="color: {{ $completionRate >= 50 ? '#047857' : '#b91c1c' }};"></i>
         </div>
-        <!-- Progress Bar -->
-        <div class="w-full bg-green-300 rounded mt-4">
-            <div class="bg-green-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
-                 style="width: {{ $completionRate }}%">
+        <div class="ml-4">
+            <h2 class="text-xl font-semibold">Completion Rate</h2>
+            <p class="text-3xl font-bold" 
+               style="color: {{ $completionRate >= 50 ? '#065f46' : '#991b1b' }};">
                 {{ $completionRate }}%
-            </div>
+            </p>
         </div>
     </div>
+    <!-- Progress Bar -->
+    <div class="w-full rounded mt-4" 
+         style="background-color: {{ $completionRate >= 50 ? '#6ee7b7' : '#fca5a5' }};">
+        <div class="text-xs font-medium text-white text-center p-1 leading-none rounded" 
+             style="background-color: {{ $completionRate >= 50 ? '#047857' : '#b91c1c' }}; width: {{ $completionRate }}%;">
+            {{ $completionRate }}%
+        </div>
+    </div>
+</div>
 
     <!-- Tasks by Priority -->
     <div class="p-4 bg-yellow-100 rounded-lg shadow">
