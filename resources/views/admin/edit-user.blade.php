@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layout')
 
 @section('title', 'Edit User')
 
@@ -25,12 +25,19 @@
         </div>
         
         <div>
-            <label for="is_admin" class="block font-medium">Role</label>
-            <select name="is_admin" id="is_admin" class="w-full border border-gray-300 rounded px-3 py-2">
-                <option value="0" {{ !$user->is_admin ? 'selected' : '' }}>User</option>
-                <option value="1" {{ $user->is_admin ? 'selected' : '' }}>Admin</option>
-            </select>
-        </div>
+    <label for="role" class="block font-medium">Role</label>
+    <select name="role" id="role" class="w-full border border-gray-300 rounded px-3 py-2">
+        <option value="member" {{ $user->role === 'member' ? 'selected' : '' }}>User</option>
+        <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
+    </select>
+
+@if(session('success'))
+    <div class="bg-green-100 text-green-500 p-4 rounded mb-4">
+        {{ session('success') }}
+    </div>
+@endif
+
+</div>
         
         <div class="text-right">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>

@@ -14,30 +14,82 @@
 <div class="bg-white p-6 rounded-lg shadow">
     <h1 class="text-2xl font-bold mb-6">Admin Dashboard</h1>
 
-    <!-- Metrics Section -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <!-- Total Tasks -->
-        <div class="p-4 bg-blue-100 rounded-lg shadow">
+<!-- Metrics Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <!-- Total Tasks -->
+    <div class="p-4 bg-blue-100 rounded-lg shadow flex items-center">
+        <div class="flex-shrink-0 p-2 bg-blue-200 rounded-full">
+            <i class="fas fa-tasks text-blue-600 text-2xl"></i>
+        </div>
+        <div class="ml-4">
             <h2 class="text-xl font-semibold">Total Tasks Assigned</h2>
-            <p class="text-3xl font-bold">{{ $totalTasks }}</p>
-        </div>
-
-        <!-- Completion Rate -->
-        <div class="p-4 bg-green-100 rounded-lg shadow">
-            <h2 class="text-xl font-semibold">Completion Rate</h2>
-            <p class="text-3xl font-bold">{{ $completionRate }}%</p>
-        </div>
-
-        <!-- Tasks by Priority -->
-        <div class="p-4 bg-yellow-100 rounded-lg shadow">
-            <h2 class="text-xl font-semibold">Tasks by Priority</h2>
-            <ul class="mt-2">
-                <li>High: {{ $tasksByPriority['High'] ?? 0 }}</li>
-                <li>Medium: {{ $tasksByPriority['Medium'] ?? 0 }}</li>
-                <li>Low: {{ $tasksByPriority['Low'] ?? 0 }}</li>
-            </ul>
+            <p class="text-3xl font-bold text-blue-800">{{ $totalTasks }}</p>
         </div>
     </div>
+
+    <!-- Completion Rate -->
+    <div class="p-4 bg-green-100 rounded-lg shadow">
+        <div class="flex items-center">
+            <div class="flex-shrink-0 p-2 bg-green-200 rounded-full">
+                <i class="fas fa-check-circle text-green-600 text-2xl"></i>
+            </div>
+            <div class="ml-4">
+                <h2 class="text-xl font-semibold">Completion Rate</h2>
+                <p class="text-3xl font-bold text-green-800">{{ $completionRate }}%</p>
+            </div>
+        </div>
+        <!-- Progress Bar -->
+        <div class="w-full bg-green-300 rounded mt-4">
+            <div class="bg-green-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
+                 style="width: {{ $completionRate }}%">
+                {{ $completionRate }}%
+            </div>
+        </div>
+    </div>
+
+    <!-- Tasks by Priority -->
+    <div class="p-4 bg-yellow-100 rounded-lg shadow">
+        <div class="flex items-center">
+            <div class="flex-shrink-0 p-2 bg-yellow-200 rounded-full">
+                <i class="fas fa-exclamation-circle text-yellow-600 text-2xl"></i>
+            </div>
+            <div class="ml-4">
+                <h2 class="text-xl font-semibold">Tasks by Priority</h2>
+            </div>
+        </div>
+        <div class="mt-4">
+            <!-- Priority Levels -->
+            <div class="mb-2">
+                <label class="text-sm font-medium">High Priority</label>
+                <div class="w-full bg-yellow-300 rounded">
+                    <div class="bg-yellow-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
+                         style="width: {{ ($tasksByPriority['High'] ?? 0) * 10 }}%">
+                        {{ $tasksByPriority['High'] ?? 0 }}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="text-sm font-medium">Medium Priority</label>
+                <div class="w-full bg-yellow-300 rounded">
+                    <div class="bg-yellow-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
+                         style="width: {{ ($tasksByPriority['Medium'] ?? 0) * 10 }}%">
+                        {{ $tasksByPriority['Medium'] ?? 0 }}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label class="text-sm font-medium">Low Priority</label>
+                <div class="w-full bg-yellow-300 rounded">
+                    <div class="bg-yellow-500 text-xs font-medium text-white text-center p-1 leading-none rounded" 
+                         style="width: {{ ($tasksByPriority['Low'] ?? 0) * 10 }}%">
+                        {{ $tasksByPriority['Low'] ?? 0 }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <!-- Charts Section -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

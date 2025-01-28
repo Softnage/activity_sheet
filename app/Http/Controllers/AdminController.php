@@ -153,15 +153,20 @@ public function updateUser(Request $request, $id)
     $validated = $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email,' . $id,
-        'is_admin' => 'required|boolean',
+        'role' => 'required|string|in:admin,member', // Validate role as a string
     ]);
 
     // Find the user and update details
     $user = User::findOrFail($id);
-    $user->update($validated);
+    $user->update([
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'role' => $validated['role'], // Update the role
+    ]);
 
     return redirect()->route('admin.manageUsers')->with('success', 'User updated successfully.');
 }
+
 public function deleteUser($id)
 {
     // Find the user and delete
