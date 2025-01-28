@@ -1,6 +1,8 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
 
     <style>
                     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');

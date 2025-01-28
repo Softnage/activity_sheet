@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Activity Sheet - Welcome</title>
+  <link rel="icon" href="{{ asset('images/favicon.webp') }}" type="image/x-icon">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- nunito fomt -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,7 +22,7 @@
   <nav class="fixed top-0 left-0 w-full bg-transparent z-50">
     <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
       <!-- Logo -->
-      <a href="#" class="text-xl font-bold text-gray-800">SoftNage Activity Sheet</a>
+      <a href="#" class="text-xl font-bold text-gray-800">Softnage Activity Sheet</a>
       <!-- Buttons -->
       <div class="flex gap-4">
         <button class="text-black px-4 py-2 rounded-full hover:bg-white hover:text-black"><a href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i></a></button>

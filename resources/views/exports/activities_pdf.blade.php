@@ -25,6 +25,7 @@
                 <th>Title</th>
                 <th>Status</th>
                 <th>Created At</th>
+                <th>User</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,8 @@
                     <td>{{ $activity->title }}</td>
                     <td>{{ $activity->status }}</td>
                     <td>{{ $activity->created_at->format('d M, Y H:i') }}</td>
+                    <!-- get user_id and compare with corresponding user from the users table -->
+                    <td>{{ $activity->user->name }}</td>
                 </tr>
             @endforeach
         </tbody>

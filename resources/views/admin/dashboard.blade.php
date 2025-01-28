@@ -69,7 +69,8 @@ new Chart(tasksPriorityCtx, {
             backgroundColor: 'rgba(59, 130, 246, 0.2)', // Fill color (light blue)
             borderColor: 'rgba(59, 130, 246, 1)',       // Line color (blue)
             borderWidth: 2,
-            tension: 0.4,                               // Curve tension for smoother lines
+            tension: 0.4,  
+            font: {family:'Poppins'},                       // Curve tension for smoother lines
             fill: true,                                 // Enable area fill under the line
             pointBackgroundColor: 'rgba(59, 130, 246, 1)', // Point color
             pointRadius: 5                              // Size of points
@@ -85,14 +86,14 @@ new Chart(tasksPriorityCtx, {
                 title: {
                     display: true,
                     text: 'Priority Levels',
-                    font: { weight: 'bold' }
+                    font: { weight: 'bold', family: 'Poppins'}
                 }
             },
             y: {
                 title: {
                     display: true,
                     text: 'Number of Tasks',
-                    font: { weight: 'bold' }
+                    font: { weight: 'bold', family: 'Poppins' }
                 },
                 beginAtZero: true                        // Ensure the Y-axis starts at 0
             }

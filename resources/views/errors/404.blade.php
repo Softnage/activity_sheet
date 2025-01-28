@@ -1,27 +1,87 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="flex items-center justify-center h-screen bg-gray-50">
-    <div class="text-center">
-        <!-- Animation Section -->
-        <div class="relative h-64 w-full flex justify-center items-center mb-6">
-            <div class="animate-bounce text-blue-500 text-9xl font-bold">
-                404
-            </div>
-            <img src="{{ asset('images/lost.jpg') }}" alt="Lost Character" 
-                class="absolute top-0 h-40 animate-float" 
-                style="animation-duration: 3s;">
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #374151;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
 
-        <!-- Message Section -->
-        <h1 class="text-3xl font-semibold text-gray-800 mb-4">Page Not Found</h1>
-        <p class="text-gray-600 mb-6">Oops! The page you're looking for doesn't exist. It might have been moved or deleted.</p>
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
 
-        <!-- Back to Home Button -->
-        <a href="{{ route('dashboard') }}" 
-            class="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
-            Go to Dashboard
-        </a>
+        .heading {
+            font-size: 6rem;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        .subheading {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #6b7280;
+        }
+
+        .illustration {
+            width: 150px;
+            margin: 20px auto;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #3b82f6;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #2563eb;
+        }
+
+        .tip {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        .tip i {
+            color: #3b82f6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading">404</div>
+        <p class="subheading">Oops! The page you’re looking for doesn’t exist.</p>
+        <img src="https://img.icons8.com/ios/150/checklist--v2.png" alt="Task Illustration" class="illustration">
+        <p class="tip">
+            <i class="fas fa-lightbulb"></i>
+            Don’t worry, you can always go back to your tasks or activities!
+        </p>
+        <a href="/" class="button">Go Back to Dashboard</a>
     </div>
-</div>
-@endsection
+</body>
+
+</html>

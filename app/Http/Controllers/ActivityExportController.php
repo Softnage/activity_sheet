@@ -22,6 +22,7 @@ class ActivityExportController extends Controller
                 'Title' => $activity->title,
                 'Status' => $activity->status,
                 'Created At' => $activity->created_at->format('d M, Y H:i'),
+                // 'Activity By' => $activity->user->name,
             ];
         }
 

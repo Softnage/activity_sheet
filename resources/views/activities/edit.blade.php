@@ -31,13 +31,19 @@
 
             <!-- Date -->
             <div class="mb-4">
-                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-                <input type="date" name="date" id="date" value="{{ old('date', $activity->date) }}" 
-                       class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                @error('date')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+    <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+    <input 
+        type="date" 
+        name="date" 
+        id="date" 
+        value="{{ old('date', $activity->created_at ? $activity->created_at->format('Y-m-d') : '') }}" 
+        class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+    @error('date')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
+
 
             <!-- Status -->
             <div class="mb-4">
