@@ -27,7 +27,7 @@
                         <td class="border border-gray-200 p-2">{{ $task->id }}</td>
                         <td class="border border-gray-200 p-2">{{ $task->title }}</td>
                         <td class="border border-gray-200 p-2">{{ $task->user->name }}</td>
-                        <td class="border border-gray-200 p-2">{{$task->task_description}}</td>
+                        <td class="border border-gray-200 p-2">{{$task->description}}</td>
                         <td class="border border-gray-200 p-2">{{ $task->priority }}</td>
                         <td class="border border-gray-200 p-2">{{ $task->created_at->format('Y-m-d') }}</td>
                     </tr>
