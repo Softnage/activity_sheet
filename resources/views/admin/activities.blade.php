@@ -35,7 +35,11 @@
                         <td class="border border-gray-300 px-4 py-2">
                             <a href="{{ route('admin.editActivity', $activity->id) }}" class="text-blue-600 hover:text-blue-800">Edit</a>
                             <!-- Optional: Add a delete link if needed -->
-                            <a href="{{ route('admin.deleteActivity', $activity->id) }}" class="text-red-600 hover:text-red-800 ml-4">Delete</a>
+                            <form action="{{ route('admin.deleteActivity', $activity->id) }}" method="POST" class="inline">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="text-red-600 hover:text-red-800 ml-4" onclick="return confirm('Are you sure you want to delete this activity?');">Delete</button>
+</form>
                         </td>
                     </tr>
                 @endforeach
