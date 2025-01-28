@@ -84,8 +84,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Pending Tasks Card -->
                 <div class="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
-                    <div class="text-blue-500 mb-2">
-                        <i class="fa-solid fa-clock fa-2x"></i>
+                    <div class="text-red-500 mb-2">
+                        <i class="fa-solid fa-tasks fa-2x"></i>
                     </div>
                     <h4 class="text-lg font-bold text-gray-800">Pending Activities</h4>
                     <p class="text-gray-600 text-sm">{{ $pendingTasksCount }}</p>
