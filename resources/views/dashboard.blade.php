@@ -10,9 +10,13 @@
     <div x-data="{ isOpen: true }" class="flex h-full bg-gray-50 shadow-lg transition-all duration-300">
         <div :class="isOpen ? 'w-64' : 'w-20'" class="p-4 h-full transition-all duration-300">
             <!-- Toggle Button -->
-            <button @click="isOpen = !isOpen" class="text-gray-600 focus:outline-none mb-4 w-full text-left">
-                <i :class="isOpen ? 'fa-solid fa-chevron-left' : 'fa-solid fa-chevron-right'" class="text-lg"></i>
-            </button>
+            <button 
+    @click="isOpen = !isOpen" 
+    class="text-gray-600 focus:outline-none mb-4 w-full text-left flex items-center"
+>
+    <i :class="isOpen ? 'fa-solid fa-chevron-left' : 'fa-solid fa-chevron-right'" class="text-lg"></i>
+</button>
+
 
             <!-- Navigation Menu -->
             <ul class="space-y-4">
