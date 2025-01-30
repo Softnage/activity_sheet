@@ -255,6 +255,8 @@ public function storeMeeting(Request $request)
         $user = User::find($userId);
         $user->notify(new \App\Notifications\MeetingNotification($meeting));
     }
+    dd($request->all());
+
 
     return redirect()->route('admin.dashboard')->with('success', 'Meeting created successfully, and invitations have been sent.');
 }

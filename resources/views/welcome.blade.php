@@ -52,7 +52,7 @@
 
     <!-- Image Section -->
     <div class="lg:w-1/2 flex justify-center">
-      <img src="https://themewagon.github.io/eNno/assets/img/hero-img.png" alt="Illustration" class="w-full max-w-md lg:max-w-lg">
+      <img src="{{ asset('images/hero-img.png') }}" alt="Illustration" class="w-full max-w-md lg:max-w-lg">
     </div>
   </section>
 </body>
