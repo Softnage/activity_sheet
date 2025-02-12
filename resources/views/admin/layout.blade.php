@@ -77,10 +77,10 @@
                     class="p-3 rounded-lg flex items-center gap-3 transition-all {{ request()->routeIs('admin.showCreateMeetingForm') ? 'bg-white text-gray-800 shadow-md' : 'hover:bg-white/20' }}">
                     <i class="fas fa-calendar-plus"></i> Create Meeting
                 </a>
-                <a href="{{ route('admin.storeMeeting') }}"
+                <!-- <a href="{{ route('admin.storeMeeting') }}"
                     class="p-3 rounded-lg flex items-center gap-3 transition-all {{ request()->routeIs('admin.storeMeeting') ? 'bg-white text-gray-800 shadow-md' : 'hover:bg-white/20' }}">
                     <i class="fas fa-calendar-check"></i> Manage Meetings
-                </a>
+                </a> -->
             </nav>
         </div>
 

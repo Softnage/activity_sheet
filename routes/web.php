@@ -50,6 +50,7 @@ Route::middleware('admin')->group(function () {
 Route::middleware('admin')->group(function (){
     Route::get('/meetings/create', [AdminController::class, 'showCreateMeetingForm'])->name('admin.showCreateMeetingForm');
     Route::post('/meetings/store', [AdminController::class, 'storeMeeting'])->name('admin.storeMeeting');
+    Route::get('/meetings/{id}/edit', [AdminController::class, 'editMeeting'])->name('admin.editMeeting');
 });
 
 
